@@ -43,7 +43,7 @@
       </div>
 
       <div class="tab">
-        <button id="tabPadrao" class="tab-button" onclick="abrirTab(event, 'docx'), mostrarDiv()">DOCX</button>
+        <button id="tabPadrao" class="tab-button" onclick="abrirTab(event, 'docx'), mostrarDiv()">JSON</button>
         <button class="tab-button" onclick="esconderDiv(), abrirTab(event, 'html')">HTML</button>
       </div>
 
@@ -115,23 +115,21 @@
 
     <div class="column">
       <h2 id="Sh2">GUID's</h2>
-      <div class="guid-box">
-        <button onclick="mostrarGuid()" class="new-guid" style="font-size: 16px;">Gerar +</button>
-        <div class="input-guid-box">
-          <div class="input-copy">
-            <input id="ramdomGuid" class="input-guid" type="text" />
-            <button onclick="copiarGuid()"> <i data-feather="copy"></i> </button>
+
+      <body>
+        <div class="guid-box">
+          <label for="numGuids">Quantidade de GUIDs:</label>
+          <input type="number" id="numGuids" min="1" value="1">
+          <button onclick="mostrarGuid()" class="new-guid" style="font-size: 16px;">Gerar +</button>
+          <div class="input-guid-box">
+            <label for="guidsText">GUIDs Gerados:</label>
+            <textarea id="guidsText" class="input-guid" rows="5" readonly></textarea>
           </div>
-          <label for="text">ID do Formulário:</label>
-          <input class="input-id" type="text">
-          <label for="text">ID da Company</label>
-          <input class="input-id" type="text">
+          <div id="check-html">
+            <input type="checkbox">
+            <label for="checkbox">Formulário em HTML</label>
+          </div>
         </div>
-        <div id="check-html">
-          <input type="checkbox">
-          <label for="checkbox">Formulário em HTML</label>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -142,19 +140,31 @@
   <div id="modal-1" class="modal">
     <div class="modal-body">
       <div>
-        <div class="modal-title"> FormStep </div>
-        <div class="modal-display">
-          <label for="text">Título da Página: </label>
-          <input type="text">
-        </div><br>
-        <div class="modal-display">
-          <label for="text">GUID: </label>
-          <input type="text">
-        </div>
+        <div>
+          <div class="modal-title"> FormStep </div>
+          <div>
+              <pre class="json-code">
+{
+    "$type": "LugaRh.Domain.Models.Flows.Steps.FormStep.FormStep, LugaRh.Domain.Models",
+    "Label": "Título da tela",
+    "Fields": {
+        "$type": "System.Collections.Generic.List`1<br>[[LugaRh.Domain.Models.Flows.Steps.FormStep.Fields.FormField, LugaRh.Domain.Models]], System.Private.CoreLib",
+        "$values": []
+    },
+              
+    "Id": "guid"
+},
+              </pre>
+          </div>
+          <div class="modal-flex">
+              <div>Descrição: Cria uma página em branco no WebApp. </div>
+          </div>
+      </div>
+      
       </div>
       <div class="close-modal">
         <button id="cancel-modal" onclick="fecharModal('modal-1')">Cancelar</button>
-        <button id="save-modal" onclick="fecharModal('modal-1')">Salvar</button>
+        <button id="save-modal" onclick="fecharModal('modal-1')">Copiar</button>
       </div>
     </div>
   </div>

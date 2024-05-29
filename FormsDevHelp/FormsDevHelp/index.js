@@ -105,13 +105,27 @@ $(function () {
 
 
 //GUID generator
-function ID() {
-  return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+function gerarGuid() {
+  return 'xxxxxxxx-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0,
+      v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
 }
-guid = (ID() + ID() + "-" + ID() + "-4" + ID().substr(0,3) + "-" + ID() + "-" + ID() + ID() + ID()).toLowerCase();
 
 function mostrarGuid() {
-  alert(guid);
+  var numGuids = document.getElementById('numGuids').value; // Obtém o número de GUIDs desejados do campo de entrada
+  var guidsText = document.getElementById('guidsText');
+  var guids = '';
+
+  // Gera os GUIDs
+  for (var i = 0; i < numGuids; i++) {
+    guids += gerarGuid() + '\n';
+  }
+
+  // Mostra os GUIDs no textarea
+  guidsText.value = guids;
 }
 
 //
+

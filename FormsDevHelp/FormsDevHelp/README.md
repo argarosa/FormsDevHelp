@@ -11,4 +11,4 @@
  - CSS
 
 # Dev
- - Lucas Cunha 
+ - Arthur Antunes
